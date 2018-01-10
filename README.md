@@ -24,74 +24,74 @@ With cache FLUSHing in kernel space, user space process could NOT peek kernel da
 ## Testing the POC of fix.
 * without the fix to MELTDOWN, running meltdown-exploit in my Ubuntu 16.10 VM (with VMware Workstation 14.1.0), and Ubuntu 16.04.2 LTS (in VMware ESXi 6.5), it shows followings.
 
-    root@t-virtual-machine:/home/t/test/meltdown/meltdown-exploit-master# ./run.sh
-    looking for linux_proc_banner in /proc/kallsyms
-    cached = 33, uncached = 273, threshold 94
-    read ffffffffbd200060 = 25 % (score=77/1000)
-    read ffffffffbd200061 = 73 s (score=79/1000)
-    read ffffffffbd200062 = 20   (score=116/1000)
-    read ffffffffbd200063 = 76 v (score=73/1000)
-    read ffffffffbd200064 = 65 e (score=77/1000)
-    read ffffffffbd200065 = 72 r (score=108/1000)
-    read ffffffffbd200066 = 73 s (score=51/1000)
-    read ffffffffbd200067 = 69 i (score=47/1000)
-    read ffffffffbd200068 = 6f o (score=47/1000)
-    read ffffffffbd200069 = 6e n (score=16/1000)
-    read ffffffffbd20006a = 20   (score=30/1000)
-    read ffffffffbd20006b = 25 % (score=44/1000)
-    read ffffffffbd20006c = 73 s (score=71/1000)
-    read ffffffffbd20006d = 20   (score=38/1000)
-    read ffffffffbd20006e = 28 ( (score=8/1000)
-    read ffffffffbd20006f = 62 b (score=23/1000)
-    VULNERABLE
-    PLEASE POST THIS TO https://github.com/paboldin/meltdown-exploit/issues/19
-    VULNERABLE ON
-    4.8.0-59-generic #64-Ubuntu SMP Thu Jun 29 19:38:34 UTC 2017 x86_64
-    processor       : 0
-    vendor_id       : GenuineIntel
-    cpu family      : 6
-    model           : 78
-    model name      : Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz
-    stepping        : 3
-    microcode       : 0x88
-    cpu MHz         : 2495.151
-    cache size      : 3072 KB
-    physical id     : 0
+    root@t-virtual-machine:/home/t/test/meltdown/meltdown-exploit-master# ./run.sh  
+    looking for linux_proc_banner in /proc/kallsyms  
+    cached = 33, uncached = 273, threshold 94  
+    read ffffffffbd200060 = 25 % (score=77/1000)  
+    read ffffffffbd200061 = 73 s (score=79/1000)  
+    read ffffffffbd200062 = 20   (score=116/1000)  
+    read ffffffffbd200063 = 76 v (score=73/1000)  
+    read ffffffffbd200064 = 65 e (score=77/1000)  
+    read ffffffffbd200065 = 72 r (score=108/1000)  
+    read ffffffffbd200066 = 73 s (score=51/1000)  
+    read ffffffffbd200067 = 69 i (score=47/1000)  
+    read ffffffffbd200068 = 6f o (score=47/1000)  
+    read ffffffffbd200069 = 6e n (score=16/1000)  
+    read ffffffffbd20006a = 20   (score=30/1000)  
+    read ffffffffbd20006b = 25 % (score=44/1000)  
+    read ffffffffbd20006c = 73 s (score=71/1000)  
+    read ffffffffbd20006d = 20   (score=38/1000)  
+    read ffffffffbd20006e = 28 ( (score=8/1000)  
+    read ffffffffbd20006f = 62 b (score=23/1000)  
+    VULNERABLE  
+    PLEASE POST THIS TO https://github.com/paboldin/meltdown-exploit/issues/19  
+    VULNERABLE ON  
+    4.8.0-59-generic #64-Ubuntu SMP Thu Jun 29 19:38:34 UTC 2017 x86_64  
+    processor       : 0  
+    vendor_id       : GenuineIntel  
+    cpu family      : 6  
+    model           : 78  
+    model name      : Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz  
+    stepping        : 3  
+    microcode       : 0x88  
+    cpu MHz         : 2495.151  
+    cache size      : 3072 KB  
+    physical id     : 0  
 
 * With the fix, it shows,
-    root@t-virtual-machine:/home/t/test/meltdown/meltdown-exploit-master# ./run.sh
-    looking for linux_proc_banner in /proc/kallsyms
-    cached = 37, uncached = 287, threshold 103
-    read ffffffffbd200060 = ff   (score=0/1000)
-    read ffffffffbd200061 = ff   (score=0/1000)
-    read ffffffffbd200062 = ff   (score=0/1000)
-    read ffffffffbd200063 = ff   (score=0/1000)
-    read ffffffffbd200064 = ff   (score=0/1000)
-    read ffffffffbd200065 = ff   (score=0/1000)
-    read ffffffffbd200066 = ff   (score=0/1000)
-    read ffffffffbd200067 = ff   (score=0/1000)
-    read ffffffffbd200068 = ff   (score=0/1000)
-    read ffffffffbd200069 = ff   (score=0/1000)
-    read ffffffffbd20006a = ff   (score=0/1000)
-    read ffffffffbd20006b = ff   (score=0/1000)
-    read ffffffffbd20006c = ff   (score=0/1000)
-    read ffffffffbd20006d = ff   (score=0/1000)
-    read ffffffffbd20006e = ff   (score=0/1000)
-    read ffffffffbd20006f = ff   (score=0/1000)
-    NOT VULNERABLE
-    PLEASE POST THIS TO https://github.com/paboldin/meltdown-exploit/issues/22
-    NOT VULNERABLE ON
-    4.8.0-59-generic #64-Ubuntu SMP Thu Jun 29 19:38:34 UTC 2017 x86_64
-    processor       : 0
-    vendor_id       : GenuineIntel
-    cpu family      : 6
-    model           : 78
-    model name      : Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz
-    stepping        : 3
-    microcode       : 0x88
-    cpu MHz         : 2495.151
-    cache size      : 3072 KB
-    physical id     : 0
+    root@t-virtual-machine:/home/t/test/meltdown/meltdown-exploit-master# ./run.sh  
+    looking for linux_proc_banner in /proc/kallsyms  
+    cached = 37, uncached = 287, threshold 103  
+    read ffffffffbd200060 = ff   (score=0/1000)  
+    read ffffffffbd200061 = ff   (score=0/1000)  
+    read ffffffffbd200062 = ff   (score=0/1000)  
+    read ffffffffbd200063 = ff   (score=0/1000)  
+    read ffffffffbd200064 = ff   (score=0/1000)  
+    read ffffffffbd200065 = ff   (score=0/1000)  
+    read ffffffffbd200066 = ff   (score=0/1000)  
+    read ffffffffbd200067 = ff   (score=0/1000)  
+    read ffffffffbd200068 = ff   (score=0/1000)  
+    read ffffffffbd200069 = ff   (score=0/1000)  
+    read ffffffffbd20006a = ff   (score=0/1000)  
+    read ffffffffbd20006b = ff   (score=0/1000)  
+    read ffffffffbd20006c = ff   (score=0/1000)  
+    read ffffffffbd20006d = ff   (score=0/1000)  
+    read ffffffffbd20006e = ff   (score=0/1000)  
+    read ffffffffbd20006f = ff   (score=0/1000)  
+    NOT VULNERABLE  
+    PLEASE POST THIS TO https://github.com/paboldin/meltdown-exploit/issues/22  
+    NOT VULNERABLE ON  
+    4.8.0-59-generic #64-Ubuntu SMP Thu Jun 29 19:38:34 UTC 2017 x86_64  
+    processor       : 0  
+    vendor_id       : GenuineIntel  
+    cpu family      : 6  
+    model           : 78  
+    model name      : Intel(R) Core(TM) i5-6300U CPU @ 2.40GHz  
+    stepping        : 3  
+    microcode       : 0x88  
+    cpu MHz         : 2495.151  
+    cache size      : 3072 KB  
+    physical id     : 0  
 
 ## TODO:
 1. May optimize kernel code for better performance.
@@ -105,7 +105,7 @@ https://meltdownattack.com/meltdown.pdf
 https://github.com/raphaelsc/Am-I-affected-by-Meltdown
 https://github.com/paboldin/meltdown-exploit
 
-##Copyright notice
+## Copyright notice
 The code and idea herein is: Copyright Tao Wang, 2018
 This POC of fix to CPU MELTDOWN in Linux X86_64 is indepdently developed by Tao Wang.
 
