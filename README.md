@@ -58,7 +58,7 @@ With cache FLUSHing in kernel space, user space process could NOT peek kernel da
     cache size      : 3072 KB  
     physical id     : 0  
 
-* With the fix, it shows,
+* With the fix, it shows,  
     root@t-virtual-machine:/home/t/test/meltdown/meltdown-exploit-master# ./run.sh  
     looking for linux_proc_banner in /proc/kallsyms  
     cached = 37, uncached = 287, threshold 103  
@@ -102,7 +102,7 @@ With cache FLUSHing in kernel space, user space process could NOT peek kernel da
 https://meltdownattack.com/meltdown.pdf
 
 ### MELTDOWN POCs
-https://github.com/raphaelsc/Am-I-affected-by-Meltdown
+https://github.com/raphaelsc/Am-I-affected-by-Meltdown  
 https://github.com/paboldin/meltdown-exploit
 
 ## Copyright notice
