@@ -109,9 +109,15 @@ so far so good (i.e. meltdown safe) ...
   
 System not affected (take it with a grain of salt though as false negative may be reported for specific environments; Please consider running it once again).  
 
-## TODO:
-1. May optimize kernel code for better performance.
-2. Check if other SIGXXX should also FLUSH process cache in kernel space.
+## Side note
+1. This fix POC is NOT the perfect/product fix to Linux kernel, but its logics should be right.  
+2. Instead of patching kernel directly, it could also be done with Linux kprobe/jprobe to probe 'do_signal' function, and FLUSH the mis-behaved process cache.
+
+## TODO
+1. May optimize the patch code for better performance.  
+2. Check if other SIGXXX should also FLUSH process cache in kernel space.  
+3. It needs to run benchmark with this patch, and compare with the KPTI/KAISER patched kernel. (It is really helpful if there is well-known tools to check the system performance or benchmark.) 
+4. Would like to know if the same logics can work well in Windows.
 
 ## References
 ### MELTDOWN
@@ -122,7 +128,7 @@ https://github.com/raphaelsc/Am-I-affected-by-Meltdown
 https://github.com/paboldin/meltdown-exploit
 
 ## Copyright notice
-The code and idea herein is: Copyright Tao Wang, 2018
+The code and idea herein is: Copyright Tao Wang, 2018.
 This POC of fix to CPU MELTDOWN in Linux X86_64 is indepdently developed by Tao Wang.
 
 This fix is tested with above two MELTDOWN POCs, copyrights are owned by the POC contributors.
