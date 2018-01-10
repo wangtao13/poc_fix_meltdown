@@ -128,7 +128,7 @@ https://github.com/raphaelsc/Am-I-affected-by-Meltdown
 https://github.com/paboldin/meltdown-exploit
 
 ## Copyright notice
+This POC of fix to CPU MELTDOWN in Linux X86_64 is indepdently developed by Tao Wang.  
 The code and idea herein is: Copyright Tao Wang, 2018.
-This POC of fix to CPU MELTDOWN in Linux X86_64 is indepdently developed by Tao Wang.
 
 This fix is tested with above two MELTDOWN POCs, copyrights are owned by the POC contributors.
