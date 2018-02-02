@@ -1,5 +1,5 @@
 --- arch/x86/kernel/signal.c.orig       2018-01-10 20:23:18.509828049 +0800
-+++ arch/x86/kernel/signal.c    2018-01-10 20:37:49.775968449 +0800
++++ arch/x86/kernel/signal.c    2018-02-02 13:03:11.823814419 +0800
 @@ -22,6 +22,7 @@
  #include <linux/uaccess.h>
  #include <linux/user-return-notifier.h>
@@ -8,15 +8,7 @@
  #include <linux/context_tracking.h>
 
  #include <asm/processor.h>
-@@ -32,6 +33,7 @@
- #include <asm/mce.h>
- #include <asm/sighandling.h>
- #include <asm/vm86.h>
-+#include <linux/version.h>
-
- #ifdef CONFIG_X86_64
- #include <asm/proto.h>
-@@ -700,6 +702,35 @@
+@@ -700,6 +701,36 @@
  #endif /* CONFIG_X86_32 || !CONFIG_X86_64 */
  }
 
@@ -44,6 +36,7 @@
 +                                       clflush_cache_range(my_page_address, PAGE_SIZE);
 +                               }
 +                               kunmap(page);
++                               put_page(page);
 +                       }
 +                       up_read(&p->mm->mmap_sem);
 +                }
